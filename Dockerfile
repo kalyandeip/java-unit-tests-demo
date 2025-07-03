@@ -1,11 +1,11 @@
-# Use Maven and Java image
-FROM maven:3.8.6-openjdk-17 AS build
+# Use a valid Maven + Java 17 image
+FROM maven:3.9.6-eclipse-temurin-17 AS build
 
-# Set work directory
+# Set working directory
 WORKDIR /app
 
-# Copy all source files
+# Copy everything
 COPY . .
 
-# Run tests
+# Run unit tests
 RUN mvn test
