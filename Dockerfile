@@ -1,11 +1,11 @@
-# Use an OpenJDK base image
-FROM openjdk:17-jdk-slim
+# Use Maven and Java image
+FROM maven:3.8.7-openjdk-17 AS build
 
-# Set the working directory
+# Set work directory
 WORKDIR /app
 
-# Copy the compiled JAR file into the container
-COPY target/java-unit-tests-demo-1.0-SNAPSHOT.jar app.jar
+# Copy all source files
+COPY . .
 
-# Set the entry point to run the jar
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run tests
+RUN mvn test
